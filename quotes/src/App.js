@@ -103,12 +103,14 @@ const [currentAuthor, setCurrentAuthor] = useState('');
       <span id="text">{currentQuote}</span>
       <FontAwesomeIcon icon={faQuoteRight} />
       </div>
-      <div className="quote-author">{currentAuthor}</div>
+      <div className="quote-author">
+      <span id="author">{currentAuthor}</span>
+      </div>
         <div className="buttons">
-        <a id="tweet-quote" className={styles.button} onClick={shareOnTwitter}>
+        <a id="tweet-quote" className={styles.button} onClick={shareOnTwitter}  href={`https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=${encodeURIComponent(`"${currentQuote}" ${currentAuthor}`)}`}>
               <FontAwesomeIcon icon={faTwitter} />
             </a>
-            <a id="tumblr-quote" className={styles.button} onClick={shareOnTumblr}>
+            <a id="tumblr-quote" className={styles.button} onClick={shareOnTumblr} href={`https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=${encodeURIComponent(currentAuthor)}&content=${encodeURIComponent(currentQuote)}&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button`}>
     <FontAwesomeIcon icon={faTumblr} />
   </a>
         <button id="new-quote" onClick={getQuote} className={styles.button}>
