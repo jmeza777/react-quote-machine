@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
 import { faQuoteRight } from '@fortawesome/free-solid-svg-icons';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faTumblr } from '@fortawesome/free-brands-svg-icons';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './App.css';
 import styles from './RandomQuoteMachine.module.css';
@@ -77,10 +79,20 @@ const [currentAuthor, setCurrentAuthor] = useState('');
   
       document.documentElement.style.setProperty('--background-color', color);
       document.documentElement.style.setProperty('--text-color', color);
+      document.documentElement.style.setProperty('--button-color', color);
       document.body.style.backgroundColor = color;
     }
   }
 
+  function shareOnTwitter() {
+    const twitterUrl = `https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=${encodeURIComponent(`"${currentQuote}" ${currentAuthor}`)}`;
+    window.open(twitterUrl, '_blank');
+  }
+
+  function shareOnTumblr() {
+    const tumblrUrl = `https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=${encodeURIComponent(currentAuthor)}&content=${encodeURIComponent(currentQuote)}&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button`;
+    window.open(tumblrUrl, "_blank");
+  }
 
   return (
     <>
@@ -93,8 +105,14 @@ const [currentAuthor, setCurrentAuthor] = useState('');
       </div>
       <div className="quote-author">{currentAuthor}</div>
         <div className="buttons">
+        <a id="tweet-quote" className={styles.button} onClick={shareOnTwitter}>
+              <FontAwesomeIcon icon={faTwitter} />
+            </a>
+            <a id="tumblr-quote" className={styles.button} onClick={shareOnTumblr}>
+    <FontAwesomeIcon icon={faTumblr} />
+  </a>
         <button id="new-quote" onClick={getQuote} className={styles.button}>
-        Get New Quote
+        New Quote
       </button>
         </div>
       </div>
