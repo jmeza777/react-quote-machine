@@ -1,0 +1,17 @@
+:root {
+    --background-color: #fff; /* Default background color */
+    --text-color: #000; /* Default text color */
+    --button-color: #000; /* Default button color */
+  }
+  
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 1s, color 1s;
+  }
+  
+  .button {
+    background-color: var(--button-color);
+    transition: background-color 1s;
+  }
+  
